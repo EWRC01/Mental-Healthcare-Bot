@@ -19,17 +19,21 @@ def select_language(choice):
     return language_code
 
 def translate_text(text, dest_language):
-    if text and text.strip() and text.strip() != dest_language:
+    if text and text.strip():
         try:
             translator = Translator()
-            translated_text = translator.translate(text, dest=dest_language)
-            if translated_text.text:
-                return translated_text.text
+            detected_lang = translator.detect(text)
+            if detected_lang and detected_lang.lang == dest_language:
+                return text  # Return the input text if it's already in the destination language
             else:
-                return f"Translation not available for '{text}' to '{dest_language}'"
+                translated_text = translator.translate(text, dest=dest_language).text
+                return translated_text
         except Exception as e:
             print(f"Translation Error: {e}")
-            return f"Idioma Seleccionado por defecto: {text}"
+            if dest_language == 'es':
+                return text
+            else:
+                return f"Translation Error: {e}"
     else:
         return text
 
