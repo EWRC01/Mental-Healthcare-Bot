@@ -1,14 +1,15 @@
-# Mental Health Chatbot
+# Mental Healthcare Bot
 
-This chatbot is designed to provide motivational phrases and guidance for mental health support. It offers advice for depression and anxiety in multiple languages.
+This is a mental health chatbot designed to provide support and motivational phrases to users experiencing depression and anxiety.
 
 ## Installation
 
 ### Windows
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/mental-health-chatbot.git
+   ```bash
+   git clone https://github.com/EWRC01/Mental-Healthcare-Bot.git
+
     ```
 
 2. Navigate to the project directory:
@@ -34,8 +35,8 @@ This chatbot is designed to provide motivational phrases and guidance for mental
 ### Linux
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/mental-health-chatbot.git
+   ```bash
+   git clone https://github.com/EWRC01/Mental-Healthcare-Bot.git
     ```
 
 2. Navigate to the project directory:
