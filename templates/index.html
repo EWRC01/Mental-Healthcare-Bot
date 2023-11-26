@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+     <!-- Favicon -->
+     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}">
+</head>
+<body>
+    <div class="container">
+                <!-- Logo at the top center -->
+                <div class="logo-top">
+                    <img src="{{ url_for('static', filename='logo.png') }}"  alt="Logo" class="logo-img">
+                </div>
+        <h1>{{ title }}</h1>
+        {% if greeting %}
+            <p>{{ greeting }}</p>
+        {% endif %}
+        {% if not language %}
+            <form action="/chat" method="post">
+                <label>{{ select_language }}</label>
+                <select name="choice">
+                    <option value="1">{{ lang_1 }}</option>
+                    <option value="2">{{ lang_2 }}</option>
+                    <option value="3">{{ lang_3 }}</option>
+                    <option value="4">{{ lang_4 }}</option>
+                    <option value="5">{{ lang_5 }}</option>
+                    <option value="6">{{ lang_6 }}</option>
+                    <option value="7">{{ lang_7 }}</option>
+                </select>
+                <input  type="submit" value="{{ start_chat }}">
+            </form>
+        {% else %}
+            {% if not advice %}
+                <form action="/advice" method="post" onsubmit="showLoading()">
+                    <input type="hidden" name="language" value="{{ language }}">
+                    <label>{{ select_issue }}</label>
+                    <select name="issue">
+                        <option value="depression">{{ get_advice_depression }}</option>
+                        <option value="anxiety">{{ get_advice_anxiety }}</option>
+                    </select>
+                    <input type="submit" value="{{ get_advice }}">
+                </form>
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <label>{{ wait }}</label >
+                </div>
+                
+            {% else %}
+                       <!-- Advice response with Gojo bot -->
+                    {% if advice %}
+                    <div class="chat-response">
+                            <center>
+                                <h3>{{ advice }}</h3>
+                            </center>
+                    </div>
+                {% endif %}
+    
+                <form action="/chat" method="post">
+                    <input type="hidden" name="language" value="{{ language }}">
+                    <input type="submit" value="{{ continue_chat }}">
+                </form>
+
+                <div class="disclaimer">
+                    <h3>{{ disclaimer }}</h3>
+                </div>
+
+                
+            {% endif %}
+        {% endif %}
+        <footer>
+            <p>Made by EWRC01 &copy; {{ year }}</p>
+        </footer>
+    </div>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block'; // Show loading animation
+        }
+    </script>
+</body>
+</html>
